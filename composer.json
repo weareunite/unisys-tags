@@ -1,0 +1,55 @@
+{
+  "name": "weareunite/unisys-tags",
+  "description": "Unisys API module to add tags and taggable behaviour with custom_properties to Unisys app inspired by https://github.com/spatie/laravel-tags",
+  "keywords": [
+    "unite",
+    "weareunite",
+    "unisys",
+    "unisys-tags"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/weareunite/unisys-tags",
+  "authors": [
+    {
+      "name": "Vladimír Žilka",
+      "email": "vlado.zilka@weareunite.com",
+      "homepage": "https://weareunite.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "weareunite/unisys-api": "^1.1",
+    "illuminate/container": "~5.5.0|~5.6.0",
+    "illuminate/contracts": "~5.5.0|~5.6.0",
+    "illuminate/database": "~5.5.0|~5.6.0",
+    "illuminate/support": "~5.5.0|~5.6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.2|^7.0",
+    "orchestra/testbench": "~3.5.0|~3.6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Unite\\Tags\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Unite\\Tags\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Unite\\Tags\\TagsServiceProvider"
+      ]
+    }
+  }
+}
