@@ -40,7 +40,10 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit",
+      "post-package-install": [
+        "@php artisan unisys-api:install:tags"
+      ]
   },
   "config": {
     "sort-packages": true

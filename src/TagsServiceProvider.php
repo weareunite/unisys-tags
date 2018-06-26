@@ -3,6 +3,7 @@
 namespace Unite\Tags;
 
 use Illuminate\Support\ServiceProvider;
+use Unite\Tags\Console\Commands\Install;
 
 class TagsServiceProvider extends ServiceProvider
 {
@@ -11,6 +12,10 @@ class TagsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->commands([
+            Install::class,
+        ]);
+
         $this->loadRoutesFrom(__DIR__.'/Routes/api.php');
 
         if ($this->app->runningInConsole()) {
