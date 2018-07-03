@@ -19,7 +19,7 @@ Route::group([
 {
     Route::group(['as' => 'tag.', 'prefix' => 'tag'], function ()
     {
-        Route::get('/',                             ['as' => 'index',                   'uses' => 'TagController@index']);
+        Route::get('/',                             ['as' => 'list',                    'uses' => 'TagController@list']);
         Route::get('{id}',                          ['as' => 'show',                    'uses' => 'TagController@show']);
         Route::put('{id}',                          ['as' => 'update',                  'uses' => 'TagController@update']);
         Route::delete('{id}',                       ['as' => 'delete',                  'uses' => 'TagController@delete']);

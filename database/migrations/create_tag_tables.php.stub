@@ -12,7 +12,7 @@ class CreateTagTables extends Migration
             $table->increments('id');
             $table->string('title');
             $table->json('type')->nullable();
-            $table->json('custom_properties');
+            $table->json('custom_properties')->nullable();
             $table->timestamps();
         });
 

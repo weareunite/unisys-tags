@@ -2,10 +2,12 @@
 
 namespace Unite\Tags\Http\Controllers;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Tags\Http\Requests\UpdateRequest;
 use Unite\Tags\Http\Resources\TagResource;
 use Unite\Tags\TagRepository;
+use Unite\UnisysApi\Http\Requests\QueryRequest;
 
 /**
  * @resource Tags
@@ -23,19 +25,22 @@ class TagController extends Controller
 
     /**
      * List
+     *
+     * @param QueryRequest $request
+     * @return AnonymousResourceCollection|TagResource[]
      */
-    public function index()
+    public function list(QueryRequest $request)
     {
-        $list = $this->repository->paginate(1000);
+        $object = $this->repository->filterByRequest($request);
 
-        return TagResource::collection($list);
+        return TagResource::collection($object);
     }
 
     /**
      * Show
      *
      * @param $id
-     * @return \Unite\Tags\Http\Resources\TagResource
+     * @return TagResource
      */
     public function show($id)
     {
@@ -50,7 +55,7 @@ class TagController extends Controller
      * Update
      *
      * @param $id
-     * @param \Unite\Tags\Http\Requests\UpdateRequest $request
+     * @param UpdateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function update($id, UpdateRequest $request)
