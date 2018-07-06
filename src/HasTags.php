@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
+/**
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Unite\Tags\Tag[] $tags
+ */
 trait HasTags
 {
     protected $queuedTags = [];
@@ -68,6 +71,7 @@ trait HasTags
 
     public function attachTags($tags)
     {
+        /** @var Tag $className */
         $className = static::getTagClassName();
 
         $tags = collect($className::findOrCreate($tags));
@@ -122,6 +126,7 @@ trait HasTags
      */
     public function syncTags($tags)
     {
+        /** @var Tag $className */
         $className = static::getTagClassName();
 
         $tags = collect($className::findOrCreate($tags));
@@ -139,6 +144,7 @@ trait HasTags
      */
     public function syncTagsWithType($tags, string $type = null)
     {
+        /** @var Tag $className */
         $className = static::getTagClassName();
 
         $tags = collect($className::findOrCreate($tags, $type));
@@ -159,6 +165,7 @@ trait HasTags
                 return $value;
             }
 
+            /** @var Tag $className */
             $className = static::getTagClassName();
 
             return $className::findFromString($value, $type);
