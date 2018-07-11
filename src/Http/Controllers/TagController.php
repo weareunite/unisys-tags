@@ -3,6 +3,7 @@
 namespace Unite\Tags\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Unite\Tags\Tag;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Tags\Http\Requests\UpdateRequest;
 use Unite\Tags\Http\Resources\TagResource;
@@ -27,6 +28,7 @@ class TagController extends Controller
      * List
      *
      * @param QueryRequest $request
+     *
      * @return AnonymousResourceCollection|TagResource[]
      */
     public function list(QueryRequest $request)
@@ -39,34 +41,26 @@ class TagController extends Controller
     /**
      * Show
      *
-     * @param $id
+     * @param Tag $model
+     *
      * @return TagResource
      */
-    public function show($id)
+    public function show(Tag $model)
     {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
-
-        return new TagResource($object);
+        return new TagResource($model);
     }
 
     /**
      * Update
      *
-     * @param $id
+     * @param Tag $model
      * @param UpdateRequest $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update($id, UpdateRequest $request)
+    public function update(Tag $model, UpdateRequest $request)
     {
-        if(!$object = $this->repository->find($id)) {
-            abort(404);
-        }
-
-        $data = $request->all();
-
-        $object->update($data);
+        $model->update( $request->all() );
 
         return $this->successJsonResponse();
     }
@@ -74,12 +68,13 @@ class TagController extends Controller
     /**
      * Delete
      *
-     * @param $id
+     * @param Tag $model
+     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($id)
+    public function delete(Tag $model)
     {
-        $this->repository->delete($id);
+        $model->delete();
 
         return $this->successJsonResponse();
     }
