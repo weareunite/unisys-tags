@@ -3,6 +3,7 @@
 namespace Unite\Tags\Http\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Unite\Tags\Http\Requests\StoreRequest;
 use Unite\Tags\Tag;
 use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Tags\Http\Requests\UpdateRequest;
@@ -48,6 +49,20 @@ class TagController extends Controller
     public function show(Tag $model)
     {
         return new TagResource($model);
+    }
+
+    /**
+     * Create
+     *
+     * @param StoreRequest $request
+     *
+     * @return TagResource
+     */
+    public function create(StoreRequest $request)
+    {
+        $object = $this->repository->create( $request->all() );
+
+        return new TagResource($object);
     }
 
     /**

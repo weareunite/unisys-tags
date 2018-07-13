@@ -1,26 +1,34 @@
 <?php
 
-namespace Unite\Tags;
+namespace Unite\Tags\Http\Controllers;
 
 use Unite\Tags\Http\Requests\AttachRequest;
 use Unite\Tags\Http\Requests\DetachRequest;
 use Unite\Tags\Http\Requests\MassAttachRequest;
 
+/**
+ * @property-read \Unite\UnisysApi\Repositories\Repository $repository
+ */
 trait AttachDetachTags
 {
     /**
      * Attach Tags
      *
-     * @param HasTagsInterface $model
+     * @param int $id
      * @param AttachRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function attachTags(HasTagsInterface $model, AttachRequest $request)
+    public function attachTags(int $id, AttachRequest $request)
     {
+        /** @var \Unite\Tags\HasTagsInterface $object */
+        if(!$object = $this->repository->find($id)) {
+            abort(404);
+        }
+
         $data = $request->only(['tag_names']);
 
-        $model->attachTags($data['tag_names']);
+        $object->attachTags($data['tag_names']);
 
         return $this->successJsonResponse();
     }
@@ -37,6 +45,7 @@ trait AttachDetachTags
         $data = $request->only(['ids', 'tag_names']);
 
         foreach ($data['ids'] as $model_id) {
+            /** @var \Unite\Tags\HasTagsInterface $object */
             if($object = $this->repository->find($model_id)) {
                 $object->attachTags($data['tag_names']);
             }
@@ -48,16 +57,21 @@ trait AttachDetachTags
     /**
      * Detach tags
      *
-     * @param HasTagsInterface $model
+     * @param int $id
      * @param DetachRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function detachTags(HasTagsInterface $model, DetachRequest $request)
+    public function detachTags(int $id, DetachRequest $request)
     {
+        /** @var \Unite\Tags\HasTagsInterface $object */
+        if(!$object = $this->repository->find($id)) {
+            abort(404);
+        }
+
         $data = $request->only('tag_names');
 
-        $model->detachTags($data['tag_names']);
+        $object->detachTags($data['tag_names']);
 
         return $this->successJsonResponse();
     }

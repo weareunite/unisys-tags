@@ -21,6 +21,7 @@ Route::group([
     {
         Route::get('/',                             ['as' => 'list',                    'uses' => 'TagController@list']);
         Route::get('{model}',                       ['as' => 'show',                    'uses' => 'TagController@show']);
+        Route::post('/',                            ['as' => 'create',                  'uses' => 'TagController@create']);
         Route::put('{model}',                       ['as' => 'update',                  'uses' => 'TagController@update']);
         Route::delete('{model}',                    ['as' => 'delete',                  'uses' => 'TagController@delete']);
     });
