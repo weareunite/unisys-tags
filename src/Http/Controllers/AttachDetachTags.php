@@ -14,6 +14,8 @@ trait AttachDetachTags
     /**
      * Attach Tags
      *
+     * Attach array of tags to given model find by model primary id
+     *
      * @param int $id
      * @param AttachRequest $request
      *
@@ -36,6 +38,8 @@ trait AttachDetachTags
     /**
      * Mass Attach Tags
      *
+     * Attach array of tags to many models by given array of models id
+     *
      * @param MassAttachRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -56,6 +60,8 @@ trait AttachDetachTags
 
     /**
      * Detach tags
+     *
+     * Detach array of tags from given model find by model primary id
      *
      * @param int $id
      * @param DetachRequest $request
