@@ -2,7 +2,7 @@
 
 namespace Unite\Tags\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Unite\UnisysApi\Http\Resources\Resource;
 
 class TagResource extends Resource
 {
