@@ -17,7 +17,7 @@ class TagResource extends Resource
         /** @var \Unite\Tags\Tag $this->resource */
         return [
             'id'                => $this->id,
-            'title'             => $this->title,
+            'name'              => $this->name,
             'type'              => $this->type,
             'custom_properties' => $this->custom_properties,
             'created_at'        => (string) $this->created_at,

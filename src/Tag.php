@@ -13,7 +13,7 @@ class Tag extends Model implements HasCustomProperty
     use HasCustomPropertyTrait;
 
     protected $fillable = [
-        'title', 'type', 'custom_properties'
+        'name', 'type', 'custom_properties'
     ];
 
     protected $casts = [
@@ -31,7 +31,7 @@ class Tag extends Model implements HasCustomProperty
 
     public static function getWithType(string $type): Collection
     {
-        return static::withType($type)->orderBy('title')->get();
+        return static::withType($type)->orderBy('name')->get();
     }
 
     public static function findOrCreate($values, string $type = null)
@@ -46,22 +46,22 @@ class Tag extends Model implements HasCustomProperty
         return is_string($values) ? $tags->first() : $tags;
     }
 
-    protected static function findOrCreateFromString(string $title, string $type = null): Tag
+    protected static function findOrCreateFromString(string $name, string $type = null): Tag
     {
-        $tag = static::findFromString($title, $type);
+        $tag = static::findFromString($name, $type);
         if (! $tag) {
             $tag = static::create([
-                'title' => $title,
+                'name' => $name,
                 'type' => $type,
             ]);
         }
         return $tag;
     }
 
-    public static function findFromString(string $title, string $type = null)
+    public static function findFromString(string $name, string $type = null)
     {
         return static::query()
-            ->where('title', $title)
+            ->where('name', $name)
             ->where('type', $type)
             ->first();
     }

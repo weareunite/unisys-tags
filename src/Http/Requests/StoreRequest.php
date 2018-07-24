@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'             => 'required|string|max:20',
+            'name'              => 'required|string|max:20',
             'type'              => 'nullable|json',
             'custom_properties' => 'nullable|json',
         ];
