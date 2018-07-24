@@ -25,8 +25,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'name'              => 'required|string|max:20',
-            'type'              => 'nullable|json',
-            'custom_properties' => 'nullable|json',
+            'type'              => 'nullable|string',
+            'custom_properties' => 'nullable|string',
         ];
     }
 }
