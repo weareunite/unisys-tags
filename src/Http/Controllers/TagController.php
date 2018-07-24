@@ -34,7 +34,7 @@ class TagController extends Controller
      */
     public function list(QueryRequest $request)
     {
-        $object = $this->repository->with(TagResource::getRelations())->filterByRequest( $request->all() );
+        $object = $this->repository->with($this->repository->getResourceRelations())->filterByRequest( $request->all() );
 
         return TagResource::collection($object);
     }
