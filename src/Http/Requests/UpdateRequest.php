@@ -25,8 +25,8 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name'              => 'string|max:20',
-            'type'              => 'nullable|json',
-            'custom_properties' => 'nullable|json',
+            'type'              => 'nullable|array',
+            'custom_properties' => 'nullable|array',
         ];
     }
 }

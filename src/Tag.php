@@ -13,7 +13,7 @@ class Tag extends Model implements HasCustomProperty
     use HasCustomPropertyTrait;
 
     protected $fillable = [
-        'name', 'type' => '{}', 'custom_properties' => '{}'
+        'name', 'type', 'custom_properties'
     ];
 
     protected $casts = [
