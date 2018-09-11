@@ -3,7 +3,7 @@
 namespace Unite\Tags\Test;
 
 use Unite\Tags\HasTags;
-use Illuminate\Database\Eloquent\Model;
+use Unite\UnisysApi\Models\Model;
 
 class TestModel extends Model
 {

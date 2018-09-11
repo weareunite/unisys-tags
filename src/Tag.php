@@ -2,11 +2,11 @@
 
 namespace Unite\Tags;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomProperty;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomPropertyTrait;
+use Unite\UnisysApi\Models\Model;
 
 class Tag extends Model implements HasCustomProperty
 {
