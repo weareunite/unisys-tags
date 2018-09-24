@@ -9,6 +9,7 @@ use Unite\UnisysApi\Http\Controllers\Controller;
 use Unite\Tags\Http\Requests\UpdateRequest;
 use Unite\Tags\Http\Resources\TagResource;
 use Unite\Tags\TagRepository;
+use Unite\UnisysApi\Http\Resources\Resource;
 use Unite\UnisysApi\QueryBuilder\QueryBuilder;
 use Unite\UnisysApi\QueryBuilder\QueryBuilderRequest;
 
@@ -24,6 +25,12 @@ class TagController extends Controller
     public function __construct(TagRepository $repository)
     {
         $this->repository = $repository;
+
+        $this->setResourceClass(TagResource::class);
+
+        $this->setResponse();
+
+        $this->middleware('cache')->only(['list', 'show']);
     }
 
     /**
@@ -31,13 +38,13 @@ class TagController extends Controller
      *
      * @param QueryBuilderRequest $request
      *
-     * @return AnonymousResourceCollection|TagResource[]
+     * @return AnonymousResourceCollection|Resource[]
      */
     public function list(QueryBuilderRequest $request)
     {
         $object = QueryBuilder::for($this->repository, $request)->paginate();
 
-        return TagResource::collection($object);
+        return $this->response->collection($object);
     }
 
     /**
@@ -45,11 +52,11 @@ class TagController extends Controller
      *
      * @param Tag $model
      *
-     * @return TagResource
+     * @return Resource
      */
     public function show(Tag $model)
     {
-        return new TagResource($model);
+        return $this->response->resource($model);
     }
 
     /**
@@ -57,13 +64,13 @@ class TagController extends Controller
      *
      * @param StoreRequest $request
      *
-     * @return TagResource
+     * @return Resource
      */
     public function create(StoreRequest $request)
     {
         $object = $this->repository->create( $request->all() );
 
-        return new TagResource($object);
+        return $this->response->resource($object);
     }
 
     /**
