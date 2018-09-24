@@ -32,6 +32,8 @@ trait AttachDetachTags
 
         $object->attachTags($data['tag_names']);
 
+        \Cache::tags('response')->flush();
+
         return $this->successJsonResponse();
     }
 
@@ -54,6 +56,8 @@ trait AttachDetachTags
                 $object->attachTags($data['tag_names']);
             }
         }
+
+        \Cache::tags('response')->flush();
 
         return $this->successJsonResponse();
     }
@@ -78,6 +82,8 @@ trait AttachDetachTags
         $data = $request->only('tag_names');
 
         $object->detachTags($data['tag_names']);
+
+        \Cache::tags('response')->flush();
 
         return $this->successJsonResponse();
     }

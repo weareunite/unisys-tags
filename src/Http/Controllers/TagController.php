@@ -70,6 +70,8 @@ class TagController extends Controller
     {
         $object = $this->repository->create( $request->all() );
 
+        \Cache::tags('response')->flush();
+
         return $this->response->resource($object);
     }
 
@@ -84,6 +86,8 @@ class TagController extends Controller
     public function update(Tag $model, UpdateRequest $request)
     {
         $model->update( $request->all() );
+
+        \Cache::tags('response')->flush();
 
         return $this->successJsonResponse();
     }
@@ -102,6 +106,8 @@ class TagController extends Controller
         } catch(\Exception $e) {
             abort(409, 'Cannot delete record');
         }
+
+        \Cache::tags('response')->flush();
 
         return $this->successJsonResponse();
     }
