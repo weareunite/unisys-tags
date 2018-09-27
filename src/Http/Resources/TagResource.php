@@ -2,6 +2,7 @@
 
 namespace Unite\Tags\Http\Resources;
 
+use Unite\Tags\Tag;
 use Unite\UnisysApi\Http\Resources\Resource;
 
 class TagResource extends Resource
@@ -22,5 +23,10 @@ class TagResource extends Resource
             'custom_properties' => $this->custom_properties,
             'created_at'        => (string) $this->created_at,
         ];
+    }
+
+    public static function modelClass()
+    {
+        return Tag::class;
     }
 }
