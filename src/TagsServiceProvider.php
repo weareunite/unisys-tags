@@ -3,6 +3,7 @@
 namespace Unite\Tags;
 
 use Illuminate\Support\ServiceProvider;
+use Route;
 use Unite\Tags\Console\Commands\Install;
 
 class TagsServiceProvider extends ServiceProvider
@@ -12,6 +13,11 @@ class TagsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::patterns([
+            'id'    => '^\d+$',
+            'model' => '^\d+$',
+        ]);
+
         $this->commands([
             Install::class,
         ]);
