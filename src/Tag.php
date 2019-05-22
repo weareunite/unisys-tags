@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomProperty;
 use Unite\UnisysApi\Helpers\CustomProperty\HasCustomPropertyTrait;
+use Unite\UnisysApi\Models\HasInstance;
 use Unite\UnisysApi\Models\Model;
 
 class Tag extends Model implements HasCustomProperty
 {
     use HasCustomPropertyTrait;
+    use HasInstance;
 
     protected $fillable = [
         'name', 'type', 'custom_properties'
